@@ -39,7 +39,7 @@ export function Logo() {
     return (
         <LogoContainer>
             <Image>
-                <img src={ CarLogoImg } />
+                <img alt="Yourcar." src={ CarLogoImg } />
             </Image>
             <LogoText>
                 Yourcar.

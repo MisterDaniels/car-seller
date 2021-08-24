@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 import { slide as Menu } from 'react-burger-menu';
 import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../../constants/responsive';
-import menuStyle from './menuStyle';
+import { menuStyle } from './menuStyle';
 
 const ListContainer = styled.ul`
     ${tw`
@@ -46,22 +46,22 @@ export function NavItems() {
             <Menu right styles={ menuStyle }>
                 <ListContainer>
                     <NavItem menu>
-                        <a href="#">
+                        <a href="/home">
                             Home
                         </a>
                     </NavItem>
                     <NavItem menu>
-                        <a href="#">
+                        <a href="/cars">
                             Cars
                         </a>
                     </NavItem>
                     <NavItem menu>
-                        <a href="#">
+                        <a href="/services">
                             Services
                         </a>
                     </NavItem>
                     <NavItem menu>
-                        <a href="#">
+                        <a href="/contact">
                             Contact Us
                         </a>
                     </NavItem>
@@ -73,22 +73,22 @@ export function NavItems() {
     return (
         <ListContainer>
             <NavItem>
-                <a href="#">
+                <a href="/home">
                     Home
                 </a>
             </NavItem>
             <NavItem>
-                <a href="#">
+                <a href="/cars">
                     Cars
                 </a>
             </NavItem>
             <NavItem>
-                <a href="#">
+                <a href="/services">
                     Services
                 </a>
             </NavItem>
             <NavItem>
-                <a href="#">
+                <a href="/contact">
                     Contact Us
                 </a>
             </NavItem>
