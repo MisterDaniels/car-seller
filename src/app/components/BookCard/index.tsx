@@ -1,10 +1,16 @@
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import Calendar from 'react-calendar';
+import { Button } from '../Button';
+
+import 'react-calendar/dist/Calendar.css';
 
 const CardContainer = styled.div`
+    min-height: 4.3em;
+    box-shadow: 0 1.3px 12px -3px rgba(0, 0, 0, 0.4);
     ${tw`
         flex
         justify-center
@@ -17,15 +23,19 @@ const CardContainer = styled.div`
         pl-2
         md:pt-2
         md:pb-2
-        md:pr-6
-        md:pl-6
+        md:pr-9
+        md:pl-9
     `};
 `;
 
 const ItemContainer = styled.div`
     ${tw`
         flex
+        relative
     `};
+    &.last {
+        margin-right: 1em;
+    }
 `;
 
 const Icon = styled.span`
@@ -44,6 +54,7 @@ const Name = styled.span`
         text-gray-600
         text-xs
         md:text-sm
+        cursor-pointer
     `};
 `;
 
@@ -60,23 +71,57 @@ const LineSeparator = styled.span`
     `};
 `;
 
+const DateCalendar = styled(Calendar)`
+    position: absolute;
+    max-width: none;
+    top: 3.5em;
+    left: -2em;
+`;
+
 export function BookCard() {
-    return <CardContainer>
-        <ItemContainer>
-            <Icon>
-                <FontAwesomeIcon icon={ faCalendarAlt } />
-            </Icon>
-            <Name>
-                Pick up date
-            </Name>
-        </ItemContainer>
-        <ItemContainer>
-            <Icon>
-                <FontAwesomeIcon icon={ faCalendarAlt } />
-            </Icon>
-            <Name>
-                Return name
-            </Name>
-        </ItemContainer>
-    </CardContainer>
+    const [startDate, setStartDate] = useState<Date>(new Date());
+    const [isStartCalendarOpen, setIsStartCalendarOpen] = useState(false);
+    const [returnDate, setReturnDate] = useState<Date>(new Date());
+    const [isReturnCalendarOpen, setIsReturnCalendarOpen] = useState(false);
+
+    const toggleStartDateCalendar = () => {
+        setIsStartCalendarOpen(!isStartCalendarOpen);
+
+        if (isReturnCalendarOpen) {
+            setIsReturnCalendarOpen(false);
+        }
+    }
+
+    const toggleReturnDateCalendar = () => {
+        setIsReturnCalendarOpen(!isReturnCalendarOpen);
+
+        if (isStartCalendarOpen) {
+            setIsStartCalendarOpen(false);
+        }
+    }
+
+    return (
+        <CardContainer>
+            <ItemContainer>
+                <Icon>
+                    <FontAwesomeIcon icon={ faCalendarAlt } />
+                </Icon>
+                <Name onClick={ toggleStartDateCalendar }>
+                    Pick up date
+                </Name>
+                { isStartCalendarOpen && <DateCalendar value={ startDate } onChange={ setStartDate as any } /> }
+            </ItemContainer>
+            <LineSeparator />
+            <ItemContainer className="last">
+                <Icon>
+                    <FontAwesomeIcon icon={ faCalendarAlt } />
+                </Icon>
+                <Name onClick={ toggleReturnDateCalendar }>
+                    Return date
+                </Name>
+                { isReturnCalendarOpen && <DateCalendar value={ returnDate } onChange={ setReturnDate as any } /> }
+            </ItemContainer>
+            <Button text="Book your ride" />
+        </CardContainer>
+    );
 }
