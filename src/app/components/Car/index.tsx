@@ -11,9 +11,9 @@ interface ICarProps extends ICar {
 }
 
 const CarContainer = styled.div`
-    min-width: 16.5em;
-    min-height: 22.2em;
-    max-height: 22.2em;
+    width: 16.5em;
+    min-height: 23em;
+    max-height: 23em;
     box-shadow: 0 1.3px 17px -2px rgba(0, 0, 0, 0.4);
     ${tw`
         flex
@@ -61,6 +61,7 @@ const PricesContainer = styled.div`
 const SmallText = styled.p`
     color: inherit;
     ${tw`
+        inline-flex
         text-xs
         font-thin
     `};

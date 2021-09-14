@@ -5,6 +5,7 @@ import { BookCard } from '../../components/BookCard';
 import { NavBar } from '../../components/NavBar';
 import { AboutUs } from './aboutUs';
 import { BookingSteps } from './bookingSteps';
+import { TopCars } from './topCars';
 import { TopSection } from './topSection';
 
 const PageContainer = styled.div`
@@ -26,6 +27,7 @@ export function HomePage() {
             <BookCard /> 
             <BookingSteps />
             <AboutUs />
+            <TopCars />
         </PageContainer>
     );
 }
